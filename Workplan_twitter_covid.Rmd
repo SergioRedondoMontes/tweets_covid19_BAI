@@ -1,0 +1,25 @@
+---
+title: "Workplan"
+author: "Sergio Redondo"
+date: "3/31/2020"
+output: word_document
+
+# 1 componentes del grupo
+
+# 2 Alcance / resumen del trabajo
+
+# 3 Datos
+
+- de donde van a estar extraidos o donde estan los datos
+Esencial: Los datos tienen que ser reproducibles
+- Primer exploracion de los datos
+
+summary
+dim
+head ejemplo
+
+# 4 Plan de trabajo
+
+Plan temporal
+
+# 5 Dificultades
