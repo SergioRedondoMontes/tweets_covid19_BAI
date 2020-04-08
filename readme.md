@@ -31,7 +31,7 @@ Hemos procedido a extraer los datos del csv y pasarlo a formato tabla, para ello
 - creado una tabla con todos los datos como tipo texto, para una visualización mñas sencilla
 - Una vez que teníamos una idea aproximada de los datos procedimos a tratarlos un poco de la siguiente manera
 
-```{r}
+```r
 covidfiles <- list.files(pattern = glob2rx("coronavirus-2020-02-29-00.csv"))
 
 colclasses <- c(rep("character", 10),
@@ -51,7 +51,7 @@ spanishCovid <- trolls1 %>%
 
 - Ya los teníamos colocados, extraidos los que estaban en español y procedimos a su exploración
 
-```{r}
+```r
 dim(spanishCovid)
 head(spanishCovid)
 summary(spanishCovid)
@@ -60,7 +60,7 @@ summary(spanishCovid)
 Al hacer esto nos dimos cuenta que crear cómo factor el tipo de dispositivo desde el que se enviaron los tweets no había sido lo más acertado, ya que habia demasidos y esto podia ocasionar lentitud en el tratamiento y uso de los datos.
 Por lo que le dímos una vuelta y tras hablas con Pedro Conceero, nuestro profesor, vamos a tratar primero el tipo de dispositivo como texto. Una vez lo tengamos en texto vamos a limpiarlo para que nos quede un fator tal como el siguiente:
 
-```{r}
+```r
 levels(spanishCovid$source) <- c('web', 'ipad', 'android', 'iphone', 'mobile web', 'web app', 'other')
 ```
 
