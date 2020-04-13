@@ -61,7 +61,7 @@ head(spanishCovid)
 summary(spanishCovid)
 ````
 Al hacer esto nos dimos cuenta que crear cómo factor el tipo de dispositivo desde el que se enviaron los tweets no había sido lo más acertado, ya que habia demasidos y esto podia ocasionar lentitud en el tratamiento y uso de los datos.
-Por lo que le dímos una vuelta y tras hablas con Pedro Conceero, nuestro profesor, vamos a tratar primero el tipo de dispositivo como texto. Una vez lo tengamos en texto vamos a limpiarlo para que nos quede un fator tal como el siguiente:
+Por lo que le dimos una vuelta y tras hablas con Pedro Conceero, nuestro profesor, vamos a tratar primero el tipo de dispositivo como texto. Una vez lo tengamos en texto vamos a limpiarlo para que nos quede un fator tal como el siguiente:
 ````{r}
 levels(spanishCovid$source) <- c('web', 'ipad', 'android', 'iphone', 'mobile web', 'web app', 'other')
 ````
