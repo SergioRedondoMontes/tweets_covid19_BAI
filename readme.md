@@ -16,6 +16,8 @@
 
 # Alcance / resumen del trabajo <a name="introduction"></a>
 
+El enfoque inicial es un tanto amplio, ya que la intención es poder analizar, a priori si es posible en español, si no en inglés, toda la información que se pueda obtener mediante un dataset de tweets del COVID-19. Desconocemos qué podemos llegar a obtener, pero vislumbramos como posible la detección de bulos, la distinta repercusión de personas o medios en el sentimiento general, la evolución del comportamiento ciudadano paralela a la propagación del virus, comparación de actitudes de usuario según el dispositivo usado, etc.
+
 # Datos <a name="data"></a>
 
 Los ids de los tweets que vamos a usar estan sacados del repositorio de github de [echen102](https://github.com/echen102/COVID-19-TweetIDs).
@@ -73,6 +75,8 @@ Poder agrupar por tipo de dispositivo desde el que se envían los tweets.
 - Pasar a factor la columna
 
 # Plan de trabajo <a name="workplan"></a>
+
+Al desconocer qué podemos encontrar y concluir, en primer lugar depuraremos y limpiaremos los tweets al máximo posible. Una vez realizado este fundamental paso inicial, valoraremos la viabilidad de analizar tweets en castellano, lo cual es un punto a favor gracias a que indudablemente el background cultural lo conocemos mucho mejor que tweets en inglés de diversos países. Por último, probaremos distintos caminos para obtener conclusiones, algunos de los cuales ya han sido mencionados en la introducción y esperamos poder encontrar más tras conseguir los primeros resultados de la limpieza y clasificación de tweets
 
 # Dificultades <a name="difficulties"></a>
 
