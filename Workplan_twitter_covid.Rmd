@@ -22,7 +22,7 @@ output: word_document
 
 
 # Alcance / resumen del trabajo <a name="introduction"></a>
-El enfoque inicial es un tanto amplio, ya que la intención es poder analizar, a priori si es posible en español, si no en inglés, toda la información que se pueda obtener mediante un dataset de tweets del COVID-19. Desconocemos qué podemos llegar a obtener, pero vislumbramos como posible la detección de bulos, la distinta repercusión de personas o medios en el sentimiento general, la evolución del comportamiento ciudadano paralela a la propagación del virus, comparación de actitudes de usuario según el dispositivo usado, etc.
+En este trabajo vamos a tratar la viralidad de los tweets del COVID-19, trabajando los RTs de manera que podamos ver de manera gráfica cómo se viraliza a lo largo del tiempo, en concreto un par de dias antes de la alerta, durante los primeros días de la alerta y actualmente.
 
 
 # Datos <a name="data"></a>
@@ -67,15 +67,60 @@ levels(spanishCovid$source) <- c('web', 'ipad', 'android', 'iphone', 'mobile web
 ````
 
 
-## Segunda exploración (*UN POR HACER*) <a name="second-show"></a>
+## Segunda exploración <a name="second-show"></a>
 Poder agrupar por tipo de dispositivo desde el que se envían los tweets.
 - Limpieza de ```spanishCovid$source``` como texto
   - sustitucion del texto por 'web', 'ipad', 'android', 'iphone', 'mobile web', 'web app', 'other'
 - Pasar a factor la columna
+```{r}
+#Android
+spanishCovid[str_detect(spanishCovid$source, "android"),]$source
+spanishCovid$source <- str_replace_all(spanishCovid$source, ".*Android.*", "Android" )
+spanishCovid[str_detect(spanishCovid$source, "Android"),]$source
+
+#Ipad
+spanishCovid[str_detect(spanishCovid$source, "ipad"),]$source
+spanishCovid$source <- str_replace_all(spanishCovid$source, ".*ipad.*", "Ipad" )
+spanishCovid[str_detect(spanishCovid$source, "Ipad"),]$source
+
+#Iphone
+spanishCovid[str_detect(spanishCovid$source, "iphone"),]$source
+spanishCovid$source <- str_replace_all(spanishCovid$source, ".*iphone.*", "Iphone" )
+spanishCovid[str_detect(spanishCovid$source, "Iphone"),]$source
+
+#Mobile web
+spanishCovid[str_detect(spanishCovid$source, "Mobile Web"),]$source
+spanishCovid$source <- str_replace_all(spanishCovid$source, ".*Mobile Web.*", "Mobile web" )
+spanishCovid[str_detect(spanishCovid$source, "Mobile web"),]$source
+
+#Web app
+spanishCovid[str_detect(spanishCovid$source, "Web App"),]$source
+spanishCovid$source <- str_replace_all(spanishCovid$source, ".*Web App.*", "Web App" )
+spanishCovid[str_detect(spanishCovid$source, "Web App"),]$source
+
+#Web
+spanishCovid[str_detect(spanishCovid$source, "Web Client"),]$source
+spanishCovid$source <- str_replace_all(spanishCovid$source, ".*Web Client.*", "Web Client" )
+spanishCovid[str_detect(spanishCovid$source, "Web Client"),]$source
+
+#Others
+spanishCovid[str_detect(spanishCovid$source, "^(?!.*(Android|Ipad|Iphone|Mobile web|Web)).*$"),]$source
+spanishCovid$source <- str_replace_all(spanishCovid$source, "^(?!.*(Android|Ipad|Iphone|Mobile web|Web)).*$", "Others" )
+spanishCovid[str_detect(spanishCovid$source, "Others"),]$source
+
+#Conversión de la col source a factor
+spanishCovid$source <- as.factor(spanishCovid$source)
+
+
+summary(spanishCovid)
+
+levels(spanishCovid$source)
+
+```
 
 
 # Plan de trabajo <a name="workplan"></a>
-Al desconocer qué podemos encontrar y concluir, en primer lugar depuraremos y limpiaremos los tweets al máximo posible. Una vez realizado este fundamental paso inicial, valoraremos la viabilidad de analizar tweets en castellano, lo cual es un punto a favor gracias a que indudablemente el background cultural lo conocemos mucho mejor que tweets en inglés de diversos países. Por último, probaremos distintos caminos para obtener conclusiones, algunos de los cuales ya han sido mencionados en la introducción y esperamos poder encontrar más tras conseguir los primeros resultados de la limpieza y clasificación de tweets.
+Al desconocer qué podemos encontrar y concluir, en primer lugar depuraremos y limpiaremos los tweets al máximo posible. Una vez realizado este fundamental paso inicial, valoraremos la viabilidad de analizar tweets en castellano, lo cual es un punto a favor gracias a que indudablemente el background cultural lo conocemos mucho mejor que tweets en inglés de diversos países. Por último, trabajaremos esos datos para ver cuales e los tweets han tenido una mayor viralidad y las relaciones que han creado entre los usuarios de esta red.
 
 
 # Dificultades <a name="difficulties"></a>

@@ -73,8 +73,8 @@ spanishCovid[str_detect(spanishCovid$source, "Web Client"),]$source
 #spanishCovid[str_detect(spanishCovid$source, "TweetDeck"),]$source
 
 #Others
-spanishCovid[str_detect(spanishCovid$source, "^(?!.*(Android|Ipad|Iphone|Mobile web|Web|Web App|TweetDeck)).*$"),]$source
-spanishCovid$source <- str_replace_all(spanishCovid$source, "^(?!.*(Android|Ipad|Iphone|Mobile web|Web|Web App|TweetDeck)).*$", "Others" )
+spanishCovid[str_detect(spanishCovid$source, "^(?!.*(Android|Ipad|Iphone|Mobile web|Web)).*$"),]$source
+spanishCovid$source <- str_replace_all(spanishCovid$source, "^(?!.*(Android|Ipad|Iphone|Mobile web|Web)).*$", "Others" )
 spanishCovid[str_detect(spanishCovid$source, "Others"),]$source
 
 
