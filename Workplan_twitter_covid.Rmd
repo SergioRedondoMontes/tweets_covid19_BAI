@@ -8,10 +8,15 @@ output: word_document
 1. [Componentes del grupo](#names)
 2. [Introducción](#introduction)
 3. [Datos](#data)
-3. [Primera exploración de los datos](#first-show)
-3. [Segunda exploración](#second-show)
-3. [Plan de trabajo](#workplan)
-3. [Dificultades](#difficulties)
+4. [Primera exploración de los datos](#first-show)
+5. [Segunda exploración](#second-show)
+6. [SNA](#sna-show)
+6.2 [igraph y gephi](#ig-show)
+6.2 [clustering coefficient and transitivity ](#cct-show)
+6.3 [neighborhood size ](#ns-show)
+6.4 [Extracting subgraphs ](#subgraph-show)
+8. [Plan de trabajo](#workplan)
+9. [Dificultades](#difficulties)
 
 
 
@@ -119,9 +124,108 @@ levels(spanishCovid$source)
 ```
 
 
+## SNA <a name="sna-show"></a>
+Explicar sna..
+
+```{r}
+spanishCovid$is_rtweet <- 0
+spanishCovid$is_rtweet[(spanishCovid$reweet_id != "")] <- 1
+table(spanishCovid$is_rtweet)
+table(spanishCovid$is_rtweet, spanishCovid$retweet_count)
+```
+
+## Igraph y gephi <a name="ig-show"></a>
+
+```{r}
+df2 <- unique(spanishCovid)
+#vector id unicos
+nodes <- unique(c(unique(df2$id),unique(df2$reweet_id))) 
+```
+
+```{r}
+network.full <- graph.data.frame(df2[,c("id",
+                                                 "reweet_id",
+                                                 "source",
+                                                 "date.str",
+                                                 "text")],
+                                 directed = FALSE,
+                                 vertices = nodes)
+write.graph(network.full,
+            file = "rtweets04.graphml",
+            format = "graphml")
+```
+Para ver que hay dentro de este gráfico de manera más sencilla lo hemos llevado a gephi.
+Hemos usado el layout Forge Atlas 2 y hemos visto que hay un conjunto enorme que parece dar rt a un unico tweet.
+El problema esta siendo que este nodo no tiene id y no sabemos quien es. Así que nos pusimos a investigar y hemos averiguado que hay 2 tipos de conexiones 1-1 (1233546364203741184--1233448065073217537) y 1-0 (1233546363306201088--                   ).
+No podemos quitar lo 1-0 porque perderiamos el enlace al tweet principal por lo que simplemente ignoraremos ese conjunto y accederemos a un subconjunto un poco más pequeño pero de gran valor.
+
+## clustering coefficient and transitivity <a name="cct-show"></a>
+```{r}
+#---------------- **clustering coefficient** and **transitivity** ----------------#
+
+
+nodes$transitivity_ratio <- 
+  transitivity(network.full, 
+               vids = V(network.full), 
+               type = "local")
+head(order(nodes$transitivity_ratio, decreasing = FALSE))
+
+V(network.full)$outdegree <- degree(network.full, mode = "out")
+V(network.full)$indegree <- degree(network.full, mode = "in")
+V(network.full)$degree <- degree(network.full, mode = "all")
+V(network.full)$reach_2_step <-   neighborhood.size(network.full, 
+                                                    order = 2,
+                                                    nodes = V(network.full), 
+                                                    mode  = c("all"))
+V(network.full)$transitivity_ratio <- transitivity(network.full, 
+                                                   vids = V(network.full), 
+                                                   type = "local")
+```
+
+## neighborhood.size <a name="ns-show"></a>
+```{r}
+#---------------- **neighborhood.size** ----------------#
+
+nodes$reach_2_step <- 
+  neighborhood.size(network.full, 
+                    order = 2,
+                    nodes = V(network.full), 
+                    mode  = c("all"))
+
+head(order(nodes$reach_2_step,decreasing = TRUE))
+```
+
+## Extracting subgraphs <a name="subgraph-show"></a>
+```{r}
+#---------------- **Extracting subgraphs** ----------------#
+dfrt <- unique(df2 %>%
+  filter(reweet_id == "1233182788016365570"))
+
+nodes2 <- unique(c(unique(dfrt$id),unique(dfrt$reweet_id))) 
+
+
+network.bigrt <- graph.data.frame(dfrt[,c("id",
+                                        "reweet_id",
+                                        "source",
+                                        "date.str",
+                                        "text")],
+                                 directed = FALSE,
+                                 vertices = nodes2)
+
+# Descomentar para guardar el grafo #
+# write.graph(network.bigrt,
+#             file = "subgrafo01.graphml",
+#             format = "graphml")
+
+```
+
+
+
 # Plan de trabajo <a name="workplan"></a>
 Al desconocer qué podemos encontrar y concluir, en primer lugar depuraremos y limpiaremos los tweets al máximo posible. Una vez realizado este fundamental paso inicial, valoraremos la viabilidad de analizar tweets en castellano, lo cual es un punto a favor gracias a que indudablemente el background cultural lo conocemos mucho mejor que tweets en inglés de diversos países. Por último, trabajaremos esos datos para ver cuales e los tweets han tenido una mayor viralidad y las relaciones que han creado entre los usuarios de esta red.
 
 
 # Dificultades <a name="difficulties"></a>
 -   Intentamos tener los tipos de dispositivos como factor desde el principio y hacer la limpieza como tal, lo cual no pudimos y pasamos a tenerlo como texto, tratarlo y a posteriori pasarlo a factor
+-   Las fechas de twitter han sido un verdadero quebradero de cabeza, he intentado todo lo que se me ha ocurrido y al final me he dado cuenta de que ademas de poner el dia de la semana en letras, (El cual no encontraba castearlo) lo hacía en número y eso ocasionaba un error en el casteo.
+- Un gran reto ha sido entener como funcionaban los nodos y vertices de igraph, gracias a la ayuda de Pedro, hemos comprendido como se generan las conexiones entre nodos y que en nuestro caso no tenemos un grafo dirigido.
