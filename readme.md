@@ -1,7 +1,5 @@
 # Table of Contents
 
-# Table of Contents
-
 1. [Componentes del grupo](#names)
 2. [Introducción](#introduction)
 3. [Datos](#data)
