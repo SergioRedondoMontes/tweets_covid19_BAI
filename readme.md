@@ -16,8 +16,8 @@
 # Componentes del grupo <a name="names"></a>
 
 - Sergio Redondo Montes
-- Ismael Rodríguez Márquez
 - Carlos Rodríguez González
+- Ismael Rodríguez Márquez
 
 # Alcance / resumen del trabajo <a name="introduction"></a>
 
@@ -162,7 +162,7 @@ Hemos usado el layout Forge Atlas 2 y hemos visto que hay un conjunto enorme que
 El problema esta siendo que este nodo no tiene id y no sabemos quien es. Así que nos pusimos a investigar y hemos averiguado que hay 2 tipos de conexiones 1-1 (1233546364203741184--1233448065073217537) y 1-0 (1233546363306201088-- ).
 No podemos quitar lo 1-0 porque perderiamos el enlace al tweet principal por lo que simplemente ignoraremos ese conjunto y accederemos a un subconjunto un poco más pequeño pero de gran valor.
 
-## clustering coefficient and transitivity <a name="cct-show"></a>
+## Clustering coefficient and transitivity <a name="cct-show"></a>
 
 ```{r}
 #---------------- **clustering coefficient** and **transitivity** ----------------#
