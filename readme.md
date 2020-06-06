@@ -10,8 +10,11 @@
 6. [SNA](#sna-show)
 
    6.1 [Igraph y gephi](#ig-show)
+   
    6.2. [Clustering coefficient and transitivity ](#cct-show)
+   
    6.3. [neighborhood size ](#ns-show)
+   
    6.4. [Extracting subgraphs ](#subgraph-show)
 7. [Plan de trabajo](#workplan)
 8. [Dificultades](#difficulties)
