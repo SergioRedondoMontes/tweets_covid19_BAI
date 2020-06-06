@@ -170,7 +170,11 @@ El problema está siendo que este nodo no tiene id y no es posible determinar qu
 
 ## Clustering coefficient and transitivity <a name="cct-show"></a>
 
-Artículo explicativo: https://www.sci.unich.it/~francesc/teaching/network/transitivity.html#:~:text=The%20transitivity%20coefficient%20%24T%24%20of,length%20three%20in%20the%20network.
+El clustering coefficient or transitivity de una red, es el número de ciclos de longitud tres y el número de caminos de longitud dos que se encuentran en esta. En resumen, es la frencuencia de ciclos de longitud tres en la red. 
+
+En el contexto de SNA ejemplificamos, tres individuos (llamémosles x, y, z), dónde x y z son ambos amigos de y, pero no entre ellos dos, conforman lo que se denomina triad. En el caso de que x y z también fueran amigos, resultaría en una triad cerrada. Como se puede apreciar, es muy sencillo que en el análisis de redes sociales se genere un alto valor para coeficientes de transitividad, en particular con el estudio que realizamos de comunidades, múltiples personas se ven relacionadas al dar RT a un nodo principal, en este caso un tweet viral; sin tener necesidad de seguirse entre sí.
+
+En cualquier grafo el clustering coefficient puede ser como máximo la densidad de las aristas, pero esto no implica que siempre sea el número de aristas del mismo.
 
 ```{r}
 #---------------- **clustering coefficient** and **transitivity** ----------------#
@@ -195,6 +199,8 @@ V(network.full)$transitivity_ratio <- transitivity(network.full,
 ```
 
 ## neighborhood.size <a name="ns-show"></a>
+
+Como su nombre indica, el tamaño de los vecinos equivale al total de nodos que están a uno de distancia del punto inicial analizado, es decir, en el caso de un tweet a analizar, todos aquellos que dieran RT al tweet serían vecinos, mientras que quienes RT una cita a dicho tweet, deberían tenerse en cuenta en transitivity pero no resultarían en vecinos, ya que su path es mayor que uno.
 
 ```{r}
 #---------------- **neighborhood.size** ----------------#
