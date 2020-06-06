@@ -151,12 +151,14 @@ df2 <- unique(spanishCovid)
 nodes <- unique(c(unique(df2$id),unique(df2$reweet_id)))
 ```
 
+Tras haber creado los nodos del grafo, podemos pasar su procesamiento para gephi:
+
 ```{r}
 network.full <- graph.data.frame(df2[,c("id",
-                                                 "reweet_id",
-                                                 "source",
-                                                 "date.str",
-                                                 "text")],
+                                        "reweet_id",
+                                        "source",
+                                        "date.str",
+                                        "text")],
                                  directed = FALSE,
                                  vertices = nodes)
 write.graph(network.full,
