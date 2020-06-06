@@ -8,6 +8,7 @@
 4. [Primera exploración de los datos](#first-show)
 5. [Segunda exploración](#second-show)
 6. [SNA](#sna-show)
+
    6.1 [Igraph y gephi](#ig-show)
    6.2. [Clustering coefficient and transitivity ](#cct-show)
    6.3. [neighborhood size ](#ns-show)
