@@ -200,6 +200,8 @@ V(network.full)$transitivity_ratio <- transitivity(network.full,
                                                    type = "local")
 ```
 
+Para generar el grafo solo nos quedamos con los RT a los tweets, no con los RT a las citas de esos tweets iniciales por ejemplo. Es por ello que todos los paths como máximo van a tener longitud uno, y que al obtener la transitivity está sera 0 o NaN, ya que no hay nada más que vecinos, concepto que se explica a continuación.
+
 ## neighborhood.size <a name="ns-show"></a>
 
 Como su nombre indica, el tamaño de los vecinos equivale al total de nodos que están a uno de distancia del punto inicial analizado, es decir, en el caso de un tweet a analizar, todos aquellos que dieran RT al tweet serían vecinos, mientras que quienes RT una cita a dicho tweet, deberían tenerse en cuenta en transitivity pero no resultarían en vecinos, ya que su path es mayor que uno.
