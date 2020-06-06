@@ -3,6 +3,7 @@
 1. [Componentes del grupo](#names)
 2. [Introducción](#introduction)
 3. [Datos](#data)
+   *3.1. [Hydrator](#hydrator)
 4. [Primera exploración de los datos](#first-show)
 5. [Segunda exploración](#second-show)
 6. [SNA](#sna-show)
@@ -34,7 +35,7 @@ Debido a la complejidad y gran consumo de recursos para realizar estas tareas, d
 Los ids de los tweets que vamos a usar estan sacados del repositorio de github de [echen102](https://github.com/echen102/COVID-19-TweetIDs).
 Los tweets descargados se pueden encontrar dentro de este repositorio en la carpeta [/datasets](https://github.com/SergioRedondoMontes/tweets_covid19_BAI/tree/master/datasets) ordenados por fecha.
 
-## Hydrator
+## Hydrator <a name="hydrator"></a>
 Hemos utilizado la aplicacion [Hydrator](https://github.com/DocNow/hydrator) para convertir los tweetsid en csv.
 [Video Explicativo](https://www.youtube.com/watch?v=6QMRIEMczyY)
 1. En Add seleccionamos el archivo con Tweet Id.
