@@ -4,7 +4,7 @@
 2. [Introducción](#introduction)
 3. [Datos](#data)
 
-3.1. [Hydrator](#hydrator)
+   3.1. [Hydrator](#hydrator)
 4. [Primera exploración de los datos](#first-show)
 5. [Segunda exploración](#second-show)
 6. [SNA](#sna-show)
