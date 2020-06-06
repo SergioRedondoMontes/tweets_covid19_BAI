@@ -34,6 +34,14 @@ Debido a la complejidad y gran consumo de recursos para realizar estas tareas, d
 Los ids de los tweets que vamos a usar estan sacados del repositorio de github de [echen102](https://github.com/echen102/COVID-19-TweetIDs).
 Los tweets descargados se pueden encontrar dentro de este repositorio en la carpeta [/datasets](https://github.com/SergioRedondoMontes/tweets_covid19_BAI/tree/master/datasets) ordenados por fecha.
 
+## Hydrator
+Hemos utilizado la aplicacion [Hydrator](https://github.com/DocNow/hydrator) para convertir los tweetsid en csv.
+[Video Explicativo](https://www.youtube.com/watch?v=6QMRIEMczyY)
+1. En Add seleccionamos el archivo con Tweet Id.
+2. Añadimos Title, Creator, Publisher y URL y la añadimos.
+3. En Datasets le damos a Start y comenzará la descarga como JSON
+4. Una vez terminado le damos a CSV y convertiremos el JSON en CSV
+
 ## Primera exploración de los datos <a name="first-show"></a>
 
 Lo primero que hemos hecho es coger uno de los .csv que tenemos (coronavirus-2020-02-29-00.csv) como muestra para ver como vienen los datos.
